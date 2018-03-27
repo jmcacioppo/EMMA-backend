@@ -14,6 +14,7 @@ var questionnaireSchema = new Schema({
 var userSchema   = new Schema({
     dateOfBirth: Date,
     email: String,
+    gender: String,
     height: Number,
     name: String,
     password: String,
