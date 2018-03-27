@@ -1,0 +1,24 @@
+{
+  "name": "emma",
+  "version": "1.0.0",
+  "description": "Energy Management Mobile Assistant",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcacioppo/EMMA-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmcacioppo/EMMA-backend/issues"
+  },
+  "homepage": "https://github.com/jmcacioppo/EMMA-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.12"
+  }
+}
