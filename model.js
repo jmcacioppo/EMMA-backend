@@ -11,10 +11,19 @@ var questionnaireSchema = new Schema({
     frustration: String
 });
 
+var healthKitSchema = new Schema({
+    date: Date,
+    caloriesBurned: Number,
+    heartRate: Number,
+    standingHours: Number,
+    steps: Number
+});
+
 var userSchema   = new Schema({
-    dateOfBirth: Date,
+    birthday: Date,
     email: String,
     gender: String,
+    healthKitData: [healthKitSchema],
     height: Number,
     name: String,
     password: String,
