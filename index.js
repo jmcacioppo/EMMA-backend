@@ -104,7 +104,6 @@ app.put('/users/health/:user_id', function(req, res) {
             if (err) res.send(err);
             res.json(user);
         });
-
     });
 });
 
