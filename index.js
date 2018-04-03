@@ -40,7 +40,7 @@ app.get('/users', function(req, res) {
 });
 
 // POST to create a new user
-app.post('/users', function(req,res) {
+app.post('/users/newUser', function(req,res) {
 	var user = new User();
 
     // Set text and user values from request
@@ -56,6 +56,16 @@ app.post('/users', function(req,res) {
     user.save(function(err) {
         if (err) res.send(err);
         else res.json({'user' : user});
+    });
+});
+
+// POST to find a user
+app.post('/users/findUser', function(req,res) {
+    User.find({'email' : req.body.email, 'password' : req.body.password}, function(err, user) {
+        if(err) res.send(err);
+
+        if(user) res.json(user);
+        else res.json({ message : 'No user found'});
     });
 });
 

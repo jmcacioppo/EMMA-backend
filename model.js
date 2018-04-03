@@ -11,6 +11,14 @@ var questionnaireSchema = new Schema({
     frustration: String
 });
 
+var addDataSchema = new Schema({
+    date: Date,
+    emotions: String,
+    mental: Number,
+    physical: Number,
+    water: Number
+});
+
 var healthKitSchema = new Schema({
     date: Date,
     caloriesBurned: Number,
@@ -20,6 +28,7 @@ var healthKitSchema = new Schema({
 });
 
 var userSchema   = new Schema({
+    addData: [addDataSchema],
     birthday: Date,
     email: String,
     gender: String,
