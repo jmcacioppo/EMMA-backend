@@ -101,6 +101,18 @@ app.put('/users/profile/:user_id', function(req, res) {
     });
 });
 
+app.get('/users/health/:user_id', function(req, res) {
+	User.findById(req.params.user_id, function(err, user) {
+        if(err) res.send(err);
+        
+        let healthKitData = {
+            'healthKitData' : user.healthKitData
+        }
+        // Get health kit data
+        res.json(healthKitData);
+    });
+});
+
 // PUT to update a user's health information
 app.put('/users/health/:user_id', function(req, res) {
 	User.findById(req.params.user_id, function(err, user) {
@@ -130,4 +142,3 @@ app.delete('/users/:user_id', function(req, res) {
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log("Listening at localhost:3000...");
-
