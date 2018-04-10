@@ -44,13 +44,9 @@ app.post('/users/newUser', function(req,res) {
 	var user = new User();
 
     // Set text and user values from request
-    user.birthday = req.body.birthday;
     user.email = req.body.email;
-    user.gender = req.body.gender;
-    user.height = req.body.height;
     user.name = req.body.name;
     user.password = req.body.password;
-    user.weight = req.body.weight;
 
     // Save user and check for errors
     user.save(function(err) {
@@ -101,7 +97,8 @@ app.put('/users/profile/:user_id', function(req, res) {
     });
 });
 
-app.get('/users/health/:user_id', function(req, res) {
+// GET Health Kit Data
+app.get('/users/healthKit/:user_id', function(req, res) {
 	User.findById(req.params.user_id, function(err, user) {
         if(err) res.send(err);
         
@@ -113,14 +110,39 @@ app.get('/users/health/:user_id', function(req, res) {
     });
 });
 
-// PUT to update a user's health information
-app.put('/users/health/:user_id', function(req, res) {
+// PUT to update a user's Health Kit Data
+app.put('/users/healthKit/:user_id', function(req, res) {
 	User.findById(req.params.user_id, function(err, user) {
         if(err) res.send(err);
         
-        // Update the user text
         user.healthKitData.push(req.body.healthKitData);
-        //user.tasksQuestionnaire.push(req.body.tasksQuestionnaire);
+        
+        user.save(function(err) {
+            if (err) res.send(err);
+            res.json(user);
+        });
+    });
+});
+
+// GET Tasks Questionnaire Data from the Add Data pages
+app.get('/users/addData/:user_id', function(req, res) {
+	User.findById(req.params.user_id, function(err, user) {
+        if(err) res.send(err);
+        
+        let tasksQuestionnaire = {
+            'tasksQuestionnaire' : user.tasksQuestionnaire
+        }
+        // Get health kit data
+        res.json(healthKitData);
+    });
+});
+
+// PUT to update a user's Task Questionnaire Data from the Add Data pages
+app.put('/users/addData/:user_id', function(req, res) {
+	User.findById(req.params.user_id, function(err, user) {
+        if(err) res.send(err);
+        
+        user.tasksQuestionnaire.push(req.body.tasksQuestionnaire);
         
         user.save(function(err) {
             if (err) res.send(err);
