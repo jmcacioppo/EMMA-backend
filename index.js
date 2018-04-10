@@ -83,7 +83,7 @@ app.put('/users/profile/:user_id', function(req, res) {
         // Update the user text
         user.birthday = req.body.birthday;
         user.email = req.body.email;
-        user.gender = user.gender;
+        user.gender = req.user.gender;
         user.height = req.body.height;
         user.name = req.body.name;
         user.password = req.body.password;
