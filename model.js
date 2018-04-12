@@ -3,6 +3,9 @@ var Schema = mongoose.Schema;
  
 var questionnaireSchema = new Schema({
     date: Date,
+    eyes: Number,
+    restOfBody: Number,
+    gameResults: Number,
     mentalDemand: String,
     physicalDemand: String,
     temporalDemand: String,
