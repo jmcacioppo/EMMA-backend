@@ -103,7 +103,7 @@ app.get('/users/healthKit/:user_id', function(req, res) {
         if(err) res.send(err);
         
         let healthKitData = {
-            'healthKitData' : user.healthKitData
+            'healthKitData' : req.body.healthKitData
         }
         // Get health kit data
         res.json(healthKitData);
