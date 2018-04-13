@@ -103,7 +103,7 @@ app.get('/users/healthKit/:user_id', function(req, res) {
         if(err) res.send(err);
         
         let healthKitData = {
-            'healthKitData' : req.body.healthKitData
+            'healthKitData' : user.healthKitData
         }
         // Get health kit data
         res.json(healthKitData);
@@ -115,7 +115,15 @@ app.put('/users/healthKit/:user_id', function(req, res) {
 	User.findById(req.params.user_id, function(err, user) {
         if(err) res.send(err);
         
-        user.healthKitData.push(req.body.healthKitData);
+        let healthKitData = {
+            "date" : req.body.date,
+            "caloriesBurned" : req.body.caloriesBurned,
+            "heartRate" : req.body.heartRate,
+            "runWalkMiles" : req.body.runWalkMiles,
+            "steps" : req.body.steps
+        }
+
+        user.healthKitData.push(healthKitData);
         
         user.save(function(err) {
             if (err) res.send(err);
