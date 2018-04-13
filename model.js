@@ -26,7 +26,7 @@ var healthKitSchema = new Schema({
     date: Date,
     caloriesBurned: String,
     heartRate: String,
-    standingHours: String,
+    runWalkMiles: String,
     steps: String
 });
 
