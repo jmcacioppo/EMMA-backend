@@ -24,10 +24,10 @@ var addDataSchema = new Schema({
 
 var healthKitSchema = new Schema({
     date: Date,
-    caloriesBurned: Number,
-    heartRate: Number,
-    standingHours: Number,
-    steps: Number
+    caloriesBurned: String,
+    heartRate: String,
+    standingHours: String,
+    steps: String
 });
 
 var userSchema   = new Schema({
