@@ -6,16 +6,10 @@ var config = require('./config');
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-      res.send(200);
-    }
-    else {
-      next();
-    }
+    next();
 };
 
 var app = express();
@@ -93,7 +87,6 @@ app.put('/users/profile/:user_id', function(req, res) {
             if (err) res.send(err);
             res.json(user);
         });
-
     });
 });
 
@@ -105,6 +98,7 @@ app.get('/users/healthKit/:user_id', function(req, res) {
         let healthKitData = {
             'healthKitData' : user.healthKitData
         }
+
         // Get health kit data
         res.json(healthKitData);
     });
@@ -141,6 +135,7 @@ app.get('/users/addData/:user_id', function(req, res) {
         let tasksQuestionnaire = {
             'tasksQuestionnaire' : user.tasksQuestionnaire
         }
+        
         // Get health kit data
         res.json(tasksQuestionnaire);
     });
@@ -150,12 +145,16 @@ app.get('/users/addData/:user_id', function(req, res) {
 app.put('/users/addData/:user_id', function(req, res) {
 	User.findById(req.params.user_id, function(err, user) {
         if(err) res.send(err);
+
+        let tasksQuestionnaire = {
+            'date' : req.body.date
+        }
         
-        user.tasksQuestionnaire.push(req.body.tasksQuestionnaire);
+        user.tasksQuestionnaire.push(tasksQuestionnaire);
         
         user.save(function(err) {
             if (err) res.send(err);
-            res.json(user);
+            res.json(tasksQuestionnaire);
         });
     });
 });
