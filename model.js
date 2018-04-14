@@ -1,25 +1,58 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
  
-var questionnaireSchema = new Schema({
-    date: Date,
-    eyes: Number,
-    restOfBody: Number,
+var emotionsSchema = new Schema({
+    time: Number,
+    totalEmotionalEnergy: Number,
+    cheerful: Number,
+    annoyed: Number,
+    anxious: Number,
+    calm: Number
+});
+
+var physicalSchema = new Schema({
+    time: Number,
+    totalPhysicalEnergy: Number,
+    eyesDry: Number,
+    eyesTired: Number,
+    head: Number,
+    neck: Number,
+    chest: Number,
+    legs: Number,
+    feet: Number
+});
+
+var mentalSchema = new Schema({
+    time: Number,
+    totalMentalEnergy: Number,
     gameResults: Number,
-    mentalDemand: String,
-    physicalDemand: String,
-    temporalDemand: String,
-    performance: String,
-    effort: String,
-    frustration: String
+    meeting: Number,
+    social: Number,
+    work: Number,
+    housework: Number,
+    exercise: Number,
+    entertainment: Number
+});
+
+var addDataFieldsSchema = new Schema({
+    time: Number,
+    social: Number,
+    food: Number,
+    nap: Number,
+    water: Number,
+    exercise: Number
+});
+
+var questionnaireSchema = new Schema({
+    date: String,
+    emotionalEnergy: [emotionsSchema],
+    physicalEnergy: [physicalSchema],
+    mentalEnergy: [mentalSchema]
 });
 
 var addDataSchema = new Schema({
     date: Date,
-    emotions: String,
-    mental: Number,
-    physical: Number,
-    water: Number
+    addDataFields: [addDataFieldsSchema]
 });
 
 var healthKitSchema = new Schema({
