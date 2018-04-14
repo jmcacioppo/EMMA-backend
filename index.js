@@ -127,7 +127,8 @@ app.put('/users/healthKit/:user_id', function(req, res) {
         
         user.save(function(err) {
             if (err) res.send(err);
-            //res.json(healthKitData);
+            res.json(healthKitData);
+            //res.end();
         });
     });
 });
